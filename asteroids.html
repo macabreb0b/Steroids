@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Roids</title>
+</head>
+<body>
+    <canvas width="500" height="500"></canvas>
+
+    <script src="movingObject.js"></script>
+    <script src="asteroid.js"></script>
+    <script src="bullet.js"></script>
+    <script src="ship.js"></script>
+    <script src="game.js"></script>
+    <script src="keymaster.js"></script>
+    <script>
+        var canvas = document.getElementsByTagName("canvas")[0];
+        new Asteroids.Game(500, 500).start(canvas);
+    </script>
+</body>
+</html>

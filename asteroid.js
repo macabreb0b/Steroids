@@ -18,11 +18,11 @@
     var locY = Math.random() * dimY;
     var pos = [locX, locY]
     var vel = this.randomVec();
-    return new Asteroid(pos, vel, this.RADIUS, this.COLOR)
+    return new Asteroid(pos, vel, (Math.random() + 0.5) * 50, this.COLOR)
   };
 
-  Asteroid.COLOR = "green";
-  Asteroid.RADIUS = 10;
+  Asteroid.COLOR = "white";
+  Asteroid.RADIUS = (Math.random() * 50);
 
   Asteroid.inherits(MovingObject);
 

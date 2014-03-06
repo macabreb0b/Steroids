@@ -25,7 +25,7 @@
 
   Bullet.COLOR = "white";
   Bullet.RADIUS = 2;
-  Bullet.SPEED = 20;
+  Bullet.SPEED = 30;
 
   return root;
 })(this);

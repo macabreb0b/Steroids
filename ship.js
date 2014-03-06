@@ -11,7 +11,7 @@
 
   var Ship = Asteroids.Ship = function() {
     MovingObject.apply(this, arguments);
-    if(this.radius >= 5) {
+    if(this.radius >= 4) {
       this.tail = this.makeTail();
     }
   }
@@ -19,25 +19,24 @@
   Ship.inherits(MovingObject);
 
   Ship.RADIUS = 15;
-  Ship.COLOR = "red";
+  Ship.COLOR = "white";
 
-  Ship.prototype.move = function(xDim, yDim) {
-    // debugger
-    var lastPos = [+this.pos[0], +this.pos[1]];
-    var lastVel = [+this.vel[0]*0.7, +this.vel[1]*0.7];
-    console.log(this)
+  Ship.prototype.move = function(xDim, yDim, nextPos) {
+    var currentPos = [this.pos[0], this.pos[1]];
 
-    MovingObject.prototype.move.call(this, xDim, yDim);
+    if( typeof nextPos == 'undefined') {
+      MovingObject.prototype.move.call(this, xDim, yDim);
+    } else {
+      this.pos = [nextPos[0], nextPos[1]];
+    };
 
     if( typeof this.tail != 'undefined') {
-      this.tail.pos = lastPos;
-      this.tail.vel = lastVel;
-      this.tail.move(xDim, yDim);
-    };
+      this.tail.move(xDim, yDim, currentPos);
+    }
   }
 
   Ship.prototype.makeTail = function() {
-    return new Ship(this.pos, [0,0], (Ship.RADIUS -= 4), Ship.COLOR);
+    return new Ship(this.pos, [0,0], (Ship.RADIUS -= 3), Ship.COLOR);
   };
 
   Ship.prototype.draw = function(ctx) {

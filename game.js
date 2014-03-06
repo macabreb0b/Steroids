@@ -60,14 +60,13 @@
   };
 
   Game.prototype.step = function(ctx) {
-    // console.log("stepped!");
     this.move();
     this.draw(ctx);
     this.checkCollisions();
+    this.bindKeyHandlers(); // called here instead of start for key ispressed function
   };
 
   Game.prototype.move = function() {
-    // console.log("moved!")
     var that = this
 
     this.asteroids.forEach( function(asteroid) {
@@ -76,15 +75,25 @@
 
     this.ship.move(that.DIM_X, that.DIM_Y);
 
-    this.bullets.forEach( function(bullet) {
+    // for(var i = 0; i < this.bullets.length; i++) {
+//       var bullet = this.bullets[i]
+//       console.log(this.bullets)
+//       if( bullet.pos[0] > that.DIM_X || bullet.pos[0] < 0 ||
+//         bullet.pos[1] > that.DIM_Y || bullet.pos[1] < 0) {
+//           this.bullets.splice(i, 1);
+//           i += 1
+//       } else {
+//         bullet.move(that.DIM_X, that.DIM_Y);
+//       };
+//     }
+
+    this.bullets.forEach( function(bullet) { // make bullets go away
       bullet.move(that.DIM_X, that.DIM_Y);
     })
   };
 
   Game.prototype.start = function(canvasEl) {
-    this.bindKeyHandlers();
     var ctx = canvasEl.getContext("2d");
-    // ctx.fillStyle = "black";
     var game = this;
     intervalId = window.setInterval(function () {
       game.step(ctx);
@@ -97,11 +106,13 @@
 
   Game.prototype.bindKeyHandlers = function() {
     var that = this
-    key('up', function() { that.ship.power([0,-0.5]) });
-    key('down', function() { that.ship.power([0,0.5]) });
-    key('left', function() { that.ship.power([-0.5,0]) });
-    key('right', function() { that.ship.power([0.5,0]) });
-    key('space', function() { debugger; that.bullets.push(that.ship.fireBullet()) });
+    if(key.isPressed('up')) { that.ship.power([0,-1]) };
+    if(key.isPressed('down')) { that.ship.power([0,1]) };
+    if(key.isPressed('left')) { that.ship.power([-1,0]) };
+    if(key.isPressed('right')) { that.ship.power([1,0]) };
+    // if(key.isPressed('space')) { that.bullets.push(that.ship.fireBullet()) };
+    key('x', function() { that.stop() });
+    key('space', function() { that.bullets.push(that.ship.fireBullet()) });
   }
 
   return root;

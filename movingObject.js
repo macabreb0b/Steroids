@@ -13,22 +13,15 @@
     var newY = (this.pos[1] + this.vel[1]) % yDim;
     if (newX < 0) {
       newX += xDim;
-    }
+    };
     if (newY < 0) {
       newY += yDim;
-    }
+    };
     this.pos[0] = newX;
     this.pos[1] = newY;
-
   };
 
-
   MovingObject.prototype.draw = function(ctx) {
-    // draw object
-    if(this.colour == "white") {
-      debugger
-    };
-
     ctx.fillStyle = this.colour;
 
     ctx.beginPath();

@@ -1,6 +1,13 @@
 <html>
 <head>
     <title>Roids</title>
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+      }
+    </style>
 </head>
 <body>
     <canvas width="500" height="500"></canvas>
@@ -13,7 +20,9 @@
     <script src="keymaster.js"></script>
     <script>
         var canvas = document.getElementsByTagName("canvas")[0];
-        new Asteroids.Game(500, 500).start(canvas);
+        var width = canvas.width = window.innerWidth
+        var height = canvas.height = window.innerHeight
+        new Asteroids.Game(width, height, 20).start(canvas);
     </script>
 </body>
 </html>

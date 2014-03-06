@@ -6,10 +6,10 @@
   Asteroid = Asteroids.Asteroid;
   Ship = Asteroids.Ship;
 
-  var Game = Asteroids.Game = function(xDim, yDim) {
+  var Game = Asteroids.Game = function(xDim, yDim, numAsteroids) {
     this.DIM_X = xDim;
     this.DIM_Y = yDim;
-    this.asteroids = this.addAsteroids(10);
+    this.asteroids = this.addAsteroids(numAsteroids);
     this.ship = this.makeShip(xDim, yDim);
     this.bullets = [];
   }
@@ -43,6 +43,7 @@
     this.ship.draw(ctx);
 
     this.bullets.forEach( function(bullet) {
+      // debugger
       bullet.draw(ctx);
     })
   };
@@ -76,7 +77,7 @@
     this.ship.move(that.DIM_X, that.DIM_Y);
 
     this.bullets.forEach( function(bullet) {
-      bullet.move(that.dim_X, that.DIM_Y);
+      bullet.move(that.DIM_X, that.DIM_Y);
     })
   };
 
@@ -100,7 +101,7 @@
     key('down', function() { that.ship.power([0,0.5]) });
     key('left', function() { that.ship.power([-0.5,0]) });
     key('right', function() { that.ship.power([0.5,0]) });
-    key('space', function() { that.bullets.push(that.ship.fireBullet()) });
+    key('space', function() { debugger; that.bullets.push(that.ship.fireBullet()) });
   }
 
   return root;

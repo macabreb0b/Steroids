@@ -18,7 +18,7 @@
 
   Ship.inherits(MovingObject);
 
-  Ship.RADIUS = 15;
+  Ship.RADIUS = 16;
   Ship.COLOR = "white";
 
   Ship.prototype.move = function(xDim, yDim, nextPos) {

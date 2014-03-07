@@ -13,11 +13,11 @@
     MovingObject.apply(this, arguments);
   };
 
-  Asteroid.randomAsteroid = function(dimX, dimY) {
-    var locX = Math.random() * dimX;
-    var locY = Math.random() * dimY;
-    var pos = [locX, locY]
+  Asteroid.randomAsteroid = function(dimX, dimY, shipPos) {
+
     var vel = this.randomVec();
+    var pos = this.randomPos(dimX, dimY, shipPos);
+
     return new Asteroid(pos, vel, (Math.random() + 0.5) * 50, this.COLOR)
   };
 
@@ -30,6 +30,24 @@
     var vX = (Math.random()*10-5);
     var vY = (Math.random()*10-5);
     return [vX, vY];
+  }
+
+  Asteroid.randomPos = function(dimX, dimY, shipPos) {
+    var locX = Math.random() * dimX;
+    var locY = Math.random() * dimY;
+    var xVect = Math.pow(Math.abs(shipPos[0] - locX), 2)
+    var yVect = Math.pow(Math.abs(shipPos[1] - locY), 2)
+    var magnitude = Math.sqrt(xVect + yVect)
+    console.log(magnitude)
+
+    var size = Math.sqrt(Math.pow(dimX, 2) + Math.pow(dimY, 2))
+    console.log(size)
+
+    if (magnitude < (size / 7)) {
+      return this.randomPos(dimX, dimY, shipPos);
+    } else {
+      return [locX, locY]
+    };
   }
 
   return root;

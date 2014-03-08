@@ -9,8 +9,9 @@
   var Game = Asteroids.Game = function(xDim, yDim, numAsteroids) {
     this.DIM_X = xDim;
     this.DIM_Y = yDim;
-    this.asteroids = this.addAsteroids(numAsteroids);
     this.ship = this.makeShip(xDim, yDim);
+
+    this.asteroids = this.addAsteroids(numAsteroids);
     this.bullets = [];
   }
 
@@ -18,7 +19,7 @@
     var allStroids = [];
     var that = this;
     for(var i = 0; i < numAst; i++) {
-      allStroids.push(Asteroid.randomAsteroid(that.DIM_X, that.DIM_Y))
+      allStroids.push(Asteroid.randomAsteroid(that.DIM_X, that.DIM_Y, that.ship.pos))
     };
     return allStroids;
   }

@@ -14,6 +14,7 @@
 
     <script src="movingObject.js"></script>
     <script src="asteroid.js"></script>
+    <script src="target.js"></script>
     <script src="bullet.js"></script>
     <script src="ship.js"></script>
     <script src="game.js"></script>
@@ -22,7 +23,7 @@
         var canvas = document.getElementsByTagName("canvas")[0];
         var width = canvas.width = window.innerWidth
         var height = canvas.height = window.innerHeight
-        new Asteroids.Game(width, height, 50).start(canvas);
+        new Asteroids.Game(width, height, canvas).start();
     </script>
 </body>
 </html>

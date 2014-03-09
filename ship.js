@@ -36,7 +36,8 @@
   }
 
   Ship.prototype.makeTail = function() {
-    return new Ship(this.pos, [0,0], (Ship.RADIUS -= 3), Ship.COLOR);
+
+    return new Ship(this.pos, [0,0], (this.radius - 3), Ship.COLOR);
   };
 
   Ship.prototype.draw = function(ctx) {
@@ -48,19 +49,15 @@
   }
 
 
-  // make ship.draw function
-
-  // call both of these from Ship
-
-  // modify 'collision' function to include tail
 
   Ship.prototype.power = function(impulse) {
+
     this.vel[0] += impulse[0];
     this.vel[1] += impulse[1];
+    // console.log(this.vel)
   };
 
   Ship.prototype.fireBullet = function() {
-    // var currentVel = this.vel
 
     var xVel = parseFloat(this.vel[0] * 2);
     var yVel = parseFloat(this.vel[1] * 2);

@@ -23,7 +23,6 @@
 
   MovingObject.prototype.draw = function(ctx) {
     ctx.fillStyle = this.colour;
-    // ctx.lineWidth = 0;
     ctx.beginPath();
 
     ctx.arc(
@@ -36,7 +35,6 @@
     );
 
     ctx.fill();
-    // ctx.stroke();
   };
 
   MovingObject.prototype.isCollidedWith = function(otherObject) {

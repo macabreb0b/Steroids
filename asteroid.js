@@ -38,13 +38,11 @@
     var xVect = Math.pow(Math.abs(shipPos[0] - locX), 2)
     var yVect = Math.pow(Math.abs(shipPos[1] - locY), 2)
     var magnitude = Math.sqrt(xVect + yVect)
-    // console.log(magnitude)
 
     var size = Math.sqrt(Math.pow(dimX, 2) + Math.pow(dimY, 2))
-    // console.log(size)
 
     if (magnitude < (size / 7)) {
-      return this.randomPos(dimX, dimY, shipPos);
+      return this.randomPos(dimX, dimY, shipPos); // make sure that no asteroids start on top of the ship
     } else {
       return [locX, locY]
     };

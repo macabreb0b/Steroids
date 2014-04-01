@@ -17,7 +17,8 @@
 
   Target.inherits(Asteroid)
 
-  Target.COLORS = ['#F2CECE', // start pink
+  Target.COLORS = [
+    '#F2CECE', // start pink
     '#EDBBBB',
     '#EBA9A9',
     '#EB9898',
@@ -94,8 +95,6 @@
     '#BA005D'
 
   ]
-
-  // Target.COLOR = "pink"
 
   Target.makeTarget = function(dimX, dimY, shipPos, level) {
     var vel = Asteroid.randomVec();

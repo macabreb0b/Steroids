@@ -54,7 +54,6 @@
 
     this.vel[0] += impulse[0];
     this.vel[1] += impulse[1];
-    // console.log(this.vel)
   };
 
   Ship.prototype.fireBullet = function() {
@@ -71,7 +70,6 @@
     var yPos = parseFloat(this.pos[1]);
     var bPos = [xPos, yPos];
 
-    // debugger
     return new Bullet(bPos, bVel, Bullet.RADIUS, Bullet.COLOR);
   };
 

@@ -16,27 +16,6 @@ MovingObject.prototype.moveRight = function() {
 MovingObject.prototype.sayLocation = function() {
   console.log("I am at location " + this.location);
 }
-//
-
-//
-// // making surrogate
-// function Surrogate() { // need surrogate
-// }
-//
-// Surrogate.prototype = MovingObject.prototype
-//
-// Ship.prototype = new Surrogate();
-//
-// // end making surrogate
-//
-// Ship.prototype.sayLocation = function() {
-//   console.log("I am a ship and my location is " + this.location)
-// }
-
-// console.log(Ship.prototype)
-
-
-
 
 Function.prototype.inherits = function(parentObject) {
   function Surrogate() {};

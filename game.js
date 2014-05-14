@@ -38,7 +38,7 @@
 
   Game.prototype.draw = function(ctx) {
 
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "purple";
     ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);
 
     this.drawLevel(ctx);

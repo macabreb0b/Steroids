@@ -14,7 +14,7 @@
     this.DIM_X = xDim;
     this.DIM_Y = yDim;
     this.ship = this.makeShip(xDim, yDim);
-    this.numAsteroids = 10; 
+    this.numAsteroids = this.level; 
 
 
     this.asteroids = this.addAsteroids(this.numAsteroids);
@@ -41,6 +41,8 @@
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);
 
+    this.drawLevel(ctx);
+    
     this.asteroids.forEach( function(asteroid) {
       asteroid.draw(ctx);
     })
@@ -48,6 +50,12 @@
     this.target.draw(ctx);
 
     this.ship.draw(ctx);
+  };
+  
+  Game.prototype.drawLevel = function(ctx) {
+    ctx.fillStyle = "222";
+    ctx.font = "200pt Arial";
+    ctx.fillText(this.level, this.DIM_X / 2 - 50, this.DIM_Y / 2 - 50);
   };
 
   Game.prototype.checkCollisions = function() {
@@ -58,13 +66,13 @@
       if( ship.isCollidedWith(asteroid) ){
         that.stop();
         that.level = 0;
-        that.numAsteroids = 10;
         that.restart();
       }
     });
 
     if(ship.isCollidedWith(target)) {
       that.stop();
+      that.level += 1
       that.restart();
 
     };
@@ -99,15 +107,11 @@
   };
 
   Game.prototype.restart = function() {
-    this.level += 1;
 
     var xDim = this.DIM_X
     var yDim = this.DIM_Y
 
-    if(this.level % 15 === 0){
-      this.numAsteroids += 5;
-    }
-    var numAsteroids = this.numAsteroids;
+    var numAsteroids = this.level
 
     this.ship = this.makeShip(xDim, yDim);
     this.asteroids = this.addAsteroids(numAsteroids);
@@ -122,11 +126,19 @@
   }
 
   Game.prototype.bindKeyHandlers = function() {
-    var that = this
-    if(key.isPressed('up')) { that.ship.power([0,-1]) };
-    if(key.isPressed('down')) { that.ship.power([0,1]) };
-    if(key.isPressed('left')) { that.ship.power([-1,0]) };
-    if(key.isPressed('right')) { that.ship.power([1,0]) };
+    var that = this;
+    if(key.isPressed('up')) { 
+      this.ship.power([0,-1]) 
+    };
+    if(key.isPressed('down')) { 
+      this.ship.power([0,1]) 
+    };
+    if(key.isPressed('left')) { 
+      this.ship.power([-1,0]) 
+    };
+    if(key.isPressed('right')) { 
+      this.ship.power([1,0]) 
+    };
     key('x', function() { that.stop() });
   }
 
